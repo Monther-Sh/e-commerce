@@ -5,12 +5,12 @@ import lombok.Data;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-@Data
+@Data // replace the setters and getters for the variables
 public class CategoryDto {
     Long id;
 
-    @NotNull
-    @Size(min=3)
+    @NotNull // this variable can't be null
+    @Size(min=3) //specify what is the minimum length of the variable will be
     String name;
 
     String description;

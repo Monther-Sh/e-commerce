@@ -1,17 +1,15 @@
 package com.example.ecommerce.services.imp;
 
-import com.example.ecommerce.dto.CustomerDto;
 import com.example.ecommerce.dto.ProductDto;
-import com.example.ecommerce.entity.Category;
 import com.example.ecommerce.entity.Products;
-import com.example.ecommerce.exceptions.ResourceNotFoundException;
+import com.example.ecommerce.exceptions.ApiRequestExeption;
 import com.example.ecommerce.reprositry.ProductRepository;
 import com.example.ecommerce.services.ProductsServices;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
-@Service
+@Service // to let the api know that this page is responsible for services
 public class ProductsServicesImp implements ProductsServices {
     private ProductRepository productRepository;
     private CategoryServiceImp categoryServiceImp;
@@ -35,13 +33,13 @@ public class ProductsServicesImp implements ProductsServices {
 
     @Override
     public ProductDto getProductById(long id) {
-        Products products = productRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Product", "id", id));
+        Products products = productRepository.findById(id).orElseThrow(() -> new ApiRequestExeption("Couldn't find the product"));
         return mapToDTO(products);
     }
 
     @Override
     public ProductDto updateProductById(ProductDto ProductDto, long id) {
-        Products products = productRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Product", "id", id));
+        Products products = productRepository.findById(id).orElseThrow(() -> new ApiRequestExeption("Couldn't find the product"));
             products.setName(ProductDto.getName());
             products.setDescription(ProductDto.getDescription());
             products.setPurchasePrice(ProductDto.getPurchasePrice());
@@ -55,10 +53,10 @@ public class ProductsServicesImp implements ProductsServices {
 
     @Override
     public void deleteProductById(long id) {
-        Products products = productRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Product", "id", id));
+        Products products = productRepository.findById(id).orElseThrow(() -> new ApiRequestExeption("Couldn't find the product"));
         productRepository.delete(products);
     }
-
+    // convert the data from an entity to DTO
     private ProductDto mapToDTO(Products products){
         ProductDto productDto = new ProductDto();
         productDto.setId(products.getId());
@@ -70,7 +68,7 @@ public class ProductsServicesImp implements ProductsServices {
         productDto.setCategory(products.getCategory());
         return productDto;
     }
-
+    // convert the data from DTO to entity
     private Products mapToEntity(ProductDto productDto){
         Products products = new Products();
         products.setName(productDto.getName());

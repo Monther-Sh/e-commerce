@@ -3,7 +3,7 @@ package com.example.ecommerce.services;
 import com.example.ecommerce.dto.CategoryDto;
 
 import java.util.List;
-
+// this page is used for determining what methods the api will do
 public interface CategoryServices {
     CategoryDto createCategory(CategoryDto CategoryDto);
 
@@ -12,8 +12,6 @@ public interface CategoryServices {
     CategoryDto getCategoryById(long id);
 
     CategoryDto updateCategory(CategoryDto categoryDto,long id);
-
-    Boolean isCategoryFound(String name);
 
     void deleteCategoryById(long id);
 }

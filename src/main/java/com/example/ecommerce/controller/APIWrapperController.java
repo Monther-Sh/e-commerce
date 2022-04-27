@@ -12,9 +12,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
-/**
- * Author: Mohammed Kharma
- */
 @RestController
 public class APIWrapperController {
     private final Logger log = LoggerFactory.getLogger(APIWrapperController.class);
@@ -24,13 +21,8 @@ public class APIWrapperController {
     @Qualifier(value = "restTemplate")
     RestTemplate restTemplate;
 
-//    public APIWrapperController(RestTemplate restTemplate) {
-//        this.restTemplate = restTemplate;
-//    }
-
     @GetMapping("/api/user")
     public ResponseEntity<User[]> all(@RequestParam(value = "name", defaultValue = "mohammed") String name) {
-//        RestTemplate restTemplate = new RestTemplate();
         ResponseEntity<User[]> response =
                 restTemplate.getForEntity(
                         "https://gorest.co.in/public/v2/users",

@@ -6,12 +6,12 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.Date;
 
-@Data
+@Data // replace the setters and getters for the variables
 public class CustomerDto {
     Long id;
 
-    @NotNull
-    @Size(min=3)
+    @NotNull // this variable can't be null
+    @Size(min=3) // the minimum for this variable to be accepted is 3
     String name;
 
     String email;

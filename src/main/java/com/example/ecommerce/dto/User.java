@@ -2,15 +2,11 @@ package com.example.ecommerce.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-/**
- * Author: Mohammed Kharma
- */
+
 @JsonIgnoreProperties(ignoreUnknown = true, value = {"id"}) //@JsonIgnoreProperties is used at class level to mark a property or list of properties to be ignored.
 public class User {
     private int id;
     private String name;
-
-//    @JsonIgnore  //@JsonIgnore is used at field level to mark a property or list of properties to be ignored.
     private String email;
 
     public User() {
