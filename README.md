@@ -1,4 +1,4 @@
-﻿# REST-API Project
+# REST-API Project
 Sample REST project
 
 This project consist of three APIs that are some elements from an e-commerce program
